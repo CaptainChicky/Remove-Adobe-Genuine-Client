@@ -1,60 +1,35 @@
-@echo off
-
-:init
-setlocal DisableDelayedExpansion
-set "batchPath=%~0"
-for %%k in (%0) do set batchName=%%~nk
-set "vbsGetPrivileges=%temp%\OEgetPriv_%batchName%.vbs"
-setlocal EnableDelayedExpansion
-
-:checkPrivileges
-NET FILE 1>NUL 2>NUL
-if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges )
-
-:getPrivileges
-if '%1'=='ELEV' (echo ELEV & shift /1 & goto gotPrivileges)
-echo Set UAC = CreateObject^("Shell.Application"^) > "%vbsGetPrivileges%"
-echo args = "ELEV " >> "%vbsGetPrivileges%"
-echo For Each strArg in WScript.Arguments >> "%vbsGetPrivileges%"
-echo args = args ^& strArg ^& " "  >> "%vbsGetPrivileges%"
-echo Next >> "%vbsGetPrivileges%"
-echo UAC.ShellExecute "!batchPath!", args, "", "runas", 1 >> "%vbsGetPrivileges%"
-"%SystemRoot%\System32\WScript.exe" "%vbsGetPrivileges%" %*
-exit /b
-
-:gotPrivileges
-setlocal & pushd .
-cd /d %~dp0
 if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 cls
 goto Start
 
 :Start
 echo Important note: Please ignore any "file/service/directory not found" errors. They are natural, and completely fine if they occur.
-pause
+echo.
 echo This script will begin by deleting the Genuine Client folder in the 32 bit Program Files folder, along with the two Genuine Client services.
 echo.
 echo First we will stop the Genuine Client from running...
+pause
 taskkill /f /im "AGMService.exe"
 taskkill /f /im "AGSService.exe"
 echo ======================================================================
 echo Then we will delete the folders containing the client files.
+pause
 Rmdir /s /q "C:\Program Files (x86)\Common Files\Adobe\AdobeGCClient" 
 Rmdir /s /q "C:\Program Files (x86)\Common Files\Adobe\OOBE\PDApp\AdobeGCClient"
 echo ======================================================================
 echo Finally, we will delete the two services made by the Genuine Client.
+pause
 sc.exe delete "AGMService"
 sc.exe delete "AGSService"
 echo ======================================================================
-pause
 echo Now, the script will remove a few more Genuine Client related files and folders found via the tool "Everything" by voidtools.
+pause
 del /f /q /s "C:\Windows\System32\Tasks\AdobeGCInvoker-1.0"
 del /f /q /s "C:\Windows\System32\Tasks_Migrated\AdobeGCInvoker-1.0"
 del /f /q /s "C:\Program Files (x86)\Adobe\Adobe Creative Cloud\Utils\AdobeGenuineValidator.exe"
 Rmdir /s /q "C:\Users\Public\Documents\AdobeGCData"
 Rmdir /s /q "C:\Program Files (x86)\Common Files\Adobe\Adobe Desktop Common\AdobeGenuineClient"
 echo ======================================================================
-pause
 echo Now that the above is removed, would you like to also remove the logs? 
 echo (Please note that logs can help with diagnosis of problems, amongst others.)
 set /p "choice=Y or N?..."

@@ -33,12 +33,19 @@ goto Start
 echo Important note: Please ignore any "file/service/directory not found" errors. They are natural, and completely fine if they occur.
 pause
 echo This script will begin by deleting the Genuine Client folder in the 32 bit Program Files folder, along with the two Genuine Client services.
+echo.
+echo First we will stop the Genuine Client from running...
 taskkill /f /im "AGMService.exe"
 taskkill /f /im "AGSService.exe"
+echo ======================================================================
+echo Then we will delete the folders containing the client files.
 Rmdir /s /q "C:\Program Files (x86)\Common Files\Adobe\AdobeGCClient" 
 Rmdir /s /q "C:\Program Files (x86)\Common Files\Adobe\OOBE\PDApp\AdobeGCClient"
+echo ======================================================================
+echo Finally, we will delete the two services made by the Genuine Client.
 sc.exe delete "AGMService"
 sc.exe delete "AGSService"
+echo ======================================================================
 pause
 echo Now, the script will remove a few more Genuine Client related files and folders found via the tool "Everything" by voidtools.
 del /f /q /s "C:\Windows\System32\Tasks\AdobeGCInvoker-1.0"
@@ -46,8 +53,9 @@ del /f /q /s "C:\Windows\System32\Tasks_Migrated\AdobeGCInvoker-1.0"
 del /f /q /s "C:\Program Files (x86)\Adobe\Adobe Creative Cloud\Utils\AdobeGenuineValidator.exe"
 Rmdir /s /q "C:\Users\Public\Documents\AdobeGCData"
 Rmdir /s /q "C:\Program Files (x86)\Common Files\Adobe\Adobe Desktop Common\AdobeGenuineClient"
+echo ======================================================================
 pause
-echo Now that the that is removed, would you like to also remove the logs? 
+echo Now that the above is removed, would you like to also remove the logs? 
 echo (Please note that logs can help with diagnosis of problems, amongst others.)
 set /p "choice=Y or N?..."
 if /i "%choice%" == "Y" (
@@ -80,8 +88,10 @@ goto ending
 
 :ending
 echo Before you exit, btw there is an option, manual, deletiong of prefetch files created by Adobe Genuine Service.
+echo.
 echo To find these prefetch files, look in "C:\Windows\Prefetch".
 echo Look for any .PF file with "AGS", "AMG", "AdobeGenuine", or of the like in the filename and delete that file manually. 
+echo.
 echo This will cause no harm to your computer, so don't worry :)
 echo ======================================================================
 echo I would like to give special thanks to the tool "Everything", v1.4.1.1000, by voidtools.

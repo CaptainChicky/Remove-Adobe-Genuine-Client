@@ -30,6 +30,8 @@ cls
 goto Start
 
 :Start
+echo Important note: Please ignore any "file/service/directory not found" errors. They are natural, and completely fine if they occur.
+pause
 echo This script will begin by deleting the Genuine Client folder in the 32 bit Program Files folder, along with the two Genuine Client services.
 taskkill /f /im "AGMService.exe"
 taskkill /f /im "AGSService.exe"

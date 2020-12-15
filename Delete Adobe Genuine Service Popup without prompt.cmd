@@ -1,14 +1,3 @@
-@echo off
-
-:init
-setlocal DisableDelayedExpansion
-set "batchPath=%~0"
-for %%k in (%0) do set batchName=%%~nk
-set "vbsGetPrivileges=%temp%\OEgetPriv_%batchName%.vbs"
-setlocal EnableDelayedExpansion
-
-:checkPrivileges
-NET FILE 1>NUL 2>NUL
 if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges )
 
 :getPrivileges
@@ -31,6 +20,7 @@ goto Start
 
 :Start
 echo Important note: Please ignore any "file/service/directory not found" errors. They are natural, and completely fine if they occur.
+timeout 8
 taskkill /f /im "AGMService.exe"
 taskkill /f /im "AGSService.exe"
 Rmdir /s /q "C:\Program Files (x86)\Common Files\Adobe\AdobeGCClient" 

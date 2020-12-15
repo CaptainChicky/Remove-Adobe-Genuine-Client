@@ -30,6 +30,7 @@ cls
 goto Start
 
 :Start
+echo Important note: Please ignore any "file/service/directory not found" errors. They are natural, and completely fine if they occur.
 taskkill /f /im "AGMService.exe"
 taskkill /f /im "AGSService.exe"
 Rmdir /s /q "C:\Program Files (x86)\Common Files\Adobe\AdobeGCClient" 

@@ -1,3 +1,14 @@
+@echo off
+
+:init
+setlocal DisableDelayedExpansion
+set "batchPath=%~0"
+for %%k in (%0) do set batchName=%%~nk
+set "vbsGetPrivileges=%temp%\OEgetPriv_%batchName%.vbs"
+setlocal EnableDelayedExpansion
+
+:checkPrivileges
+NET FILE 1>NUL 2>NUL
 if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges )
 
 :getPrivileges
@@ -51,6 +62,6 @@ echo This will cause no harm to your computer, so don't worry :)
 echo ======================================================================
 echo I would like to give special thanks to the tool "Everything", v1.4.1.1000, by voidtools.
 echo This tool makes an index of the entire file system, and makes it extremely fast and easy to search for files.
-echo If you are interested, please visit "https://www.voidtools.com/"! :D
+echo If you are interested, please visit "https://www.voidtools.com/". :)
 pause
 exit

@@ -44,7 +44,7 @@ del /f /q /s "C:\Windows\System32\Tasks\AdobeGCInvoker-1.0"
 del /f /q /s "C:\Windows\System32\Tasks_Migrated\AdobeGCInvoker-1.0"
 del /f /q /s "C:\Program Files (x86)\Adobe\Adobe Creative Cloud\Utils\AdobeGenuineValidator.exe"
 del /f /q /s "C:\Windows\Temp\adobegc.log"
-del /f /q /s "C:\Users\maxfa\AppData\Local\Temp\adobegc.log"
+del /f /q /s "%userprofile%\AppData\Local\Temp\adobegc.log"
 goto Finish
 
 :Finish

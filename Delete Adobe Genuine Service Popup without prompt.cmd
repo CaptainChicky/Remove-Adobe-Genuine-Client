@@ -53,7 +53,7 @@ echo Removal of Adobe Genuine Service has finished.
 echo.
 echo Please note that although Adobe Genuine Service's file, services, and folders have been removed, it may come back.
 echo You will need to re-run this script, as the removal is not perfect.
-echo Also note the fact that if you re-install or update any Adobe apps, the Adobe Genuine Service will be reinstroduces, so the script will need to be run again.
+echo Also note the fact that if you re-install or update any Adobe apps, the Adobe Genuine Service will be reinstroduced, so the script will need to be run again.
 
 echo Before you exit, btw there is an option, manual, deletiong of prefetch files created by Adobe Genuine Service.
 echo To find these prefetch files, look in "C:\Windows\Prefetch".

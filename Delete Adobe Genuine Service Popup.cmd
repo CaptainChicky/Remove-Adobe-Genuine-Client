@@ -91,7 +91,7 @@ cls
 goto ending
 
 :ending
-echo Before you exit, btw there is an option, manual, deletiong of prefetch files created by Adobe Genuine Service.
+echo Before you exit, btw there is an optional and manual deletion of prefetch files created by Adobe Genuine Service.
 echo.
 echo To find these prefetch files, look in "C:\Windows\Prefetch".
 echo Look for any .PF file with "AGS", "AMG", "AdobeGenuine", or of the like in the filename and delete that file manually. 

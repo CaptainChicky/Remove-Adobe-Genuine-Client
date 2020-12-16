@@ -76,7 +76,7 @@ if /i "%choice%" == "Y" (
 
 :DelLog
 del /f /q /s "C:\Windows\Temp\adobegc.log"
-del /f /q /s "C:\Users\maxfa\AppData\Local\Temp\adobegc.log"
+del /f /q /s "%userprofile%\AppData\Local\Temp\adobegc.log"
 goto Finish
 
 :Finish

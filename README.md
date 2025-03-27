@@ -9,7 +9,7 @@ The only reason to use this script is when you have *genuine* Adobe software, bu
 2) Calling Adobe support
 3) Seeking help via third-party forums
 
-, amongst others.
+amongst others.
 
 # Overview...
 In this repository, you can find scripts that will remove the Adobe Genuine Client from *genuine* Adobe software, after the user has exhausted all means of removing the mistaken popup from the Genuine Client, listed above.
